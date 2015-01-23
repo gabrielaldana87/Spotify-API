@@ -64,13 +64,19 @@ input2.addEventListener("click",function()
         console.log(parsed);
         var div5= document.getElementById("floats");
         var ul = document.createElement("ul");
-        div5.appendChild(ul);
-
+        var uldiv=document.createElement("div");
+        div5.appendChild(uldiv);
+        uldiv.appendChild(ul);
+        uldiv.id="uldiv";
 
         var albums = parsed.items;
         img.style.display="none";
         div5.style.backgroundColor="black";
         div5.setAttribute("width","500");
+        var div6=document.createElement("div");
+        div5.appendChild(div6);
+        div6.id="albumdiv";
+
         albums.forEach(function(album)
         {
           var li = document.createElement("li");
@@ -81,11 +87,17 @@ input2.addEventListener("click",function()
           li.addEventListener("mousemove",function(evt)
           {
             li.style.color="red";
+
             li.addEventListener("mouseout",function(evt)
             {
               li.style.color="white";
             })
           })
+
+          var img = document.createElement("img");
+          div6.appendChild(img);
+          img.src=album.images[0].url;
+          img.setAttribute("height","100");
         })
       })
       xhr.send();
