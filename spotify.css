@@ -1,0 +1,33 @@
+#floats{
+  background-color:black;
+  position: relative;
+}
+li{
+  color:white;
+  font-family: Calibri;
+}
+
+h1{
+  font-family: Calibri;
+}
+img{
+  float:left;
+}
+
+img:hover{
+  border: 4px solid red;
+}
+ul{
+  float:left;
+}
+#albumdiv{
+  position:absolute;
+  width:30%;
+  right:0px;
+}
+
+#uldiv{
+  position:absolute;
+  width:70%;
+  background-color:black;
+}

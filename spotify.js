@@ -85,19 +85,46 @@ input2.addEventListener("click",function()
           li.style.color="white";
           h1.style.color="white";
           li.addEventListener("mousemove",function(evt)
-          {
+            {
             li.style.color="red";
 
             li.addEventListener("mouseout",function(evt)
-            {
+              {
               li.style.color="white";
+              })
             })
-          })
-
           var img = document.createElement("img");
           div6.appendChild(img);
           img.src=album.images[0].url;
           img.setAttribute("height","100");
+
+          li.addEventListener("click",function(evt)
+          {
+            var albumId=album.id;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.spotify.com/v1/albums/"+albumId);
+            xhr.addEventListener("load", function(e)
+            {
+              var d=xhr.responseText;
+              var parsed=JSON.parse(d);
+
+              var ul2 = document.createElement("ul");
+              uldiv.appendChild(ul2);
+              ul.style.display="none";
+
+              var songs = parsed.tracks.items;
+
+              songs.forEach(function(song)
+              {
+                var li2= document.createElement("li");
+                ul2.appendChild(li2);
+                li2.innerText=song.name;
+              })
+
+            })
+            xhr.send();
+          })
         })
       })
       xhr.send();
@@ -117,7 +144,7 @@ window.addEventListener("keydown",function(evt)
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "https://api.spotify.com/v1/search?q=artist:"+method_look+"&type=artist");
       xhr.addEventListener("load", function(e)
-      {
+       {
         var d=xhr.responseText;
         var parsed=JSON.parse(d);
         var h1= document.querySelector("h1");
