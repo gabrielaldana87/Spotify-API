@@ -66,9 +66,11 @@ input2.addEventListener("click",function()
         var ul = document.createElement("ul");
         div5.appendChild(ul);
 
+
         var albums = parsed.items;
         img.style.display="none";
         div5.style.backgroundColor="black";
+        div5.setAttribute("width","500");
         albums.forEach(function(album)
         {
           var li = document.createElement("li");
@@ -76,11 +78,15 @@ input2.addEventListener("click",function()
           li.innerText=album.name;
           li.style.color="white";
           h1.style.color="white";
+          li.addEventListener("mousemove",function(evt)
+          {
+            li.style.color="red";
+            li.addEventListener("mouseout",function(evt)
+            {
+              li.style.color="white";
+            })
+          })
         })
-        // h1.innerText=parsed.artists.items[counter].name;
-        // var img = document.querySelector("img");
-        // img.src=parsed.artists.items[counter].images[0].url;
-        // counter++;
       })
       xhr.send();
     })
